@@ -90,8 +90,19 @@ const ProductEditor = ({ row, onChange, onSave, onDelete, onMove, isFirst, isLas
     const prices = row.prices.map((p, idx) => (idx === i ? { ...p, ...patch } : p));
     update("prices", prices);
   };
-  const addPrice = () => update("prices", [...row.prices, { qty: "", price: 0 }]);
+  const addPrice = () => update("prices", [...row.prices, { qty: "1 કિ.ગ્રા", price: 0 }]);
   const removePrice = (i: number) => update("prices", row.prices.filter((_, idx) => idx !== i));
+
+  // Parse qty string like "5 કિ.ગ્રા" → { amount: "5", unit: "કિ.ગ્રા" }
+  const UNITS = ["કિ.ગ્રા", "ગ્રામ", "નંગ", "ડઝન"] as const;
+  type Unit = typeof UNITS[number];
+  const parseQty = (qty: string): { amount: string; unit: Unit } => {
+    for (const u of UNITS) {
+      if (qty.endsWith(u)) return { amount: qty.slice(0, -u.length).trim(), unit: u };
+    }
+    return { amount: qty, unit: "કિ.ગ્રા" };
+  };
+  const composeQty = (amount: string, unit: string) => `${amount} ${unit}`;
   const [uploading, setUploading] = useState(false);
 
   const handleUpload = async (file: File) => {
@@ -184,14 +195,51 @@ const ProductEditor = ({ row, onChange, onSave, onDelete, onMove, isFirst, isLas
           <Button type="button" size="sm" variant="outline" onClick={addPrice}><Plus className="h-3 w-3" /> Add tier</Button>
         </div>
         <div className="space-y-2">
-          {row.prices.map((p, i) => (
-            <div key={i} className="grid grid-cols-12 gap-2 items-center">
-              <Input className="col-span-4" placeholder="Qty (e.g. 5 કિ.ગ્રા)" value={p.qty} onChange={(e) => updatePrice(i, { qty: e.target.value })} />
-              <Input className="col-span-3" type="number" placeholder="Price ₹" value={p.price} onChange={(e) => updatePrice(i, { price: Number(e.target.value) })} />
-              <Input className="col-span-4" placeholder="Note (optional)" value={p.note ?? ""} onChange={(e) => updatePrice(i, { note: e.target.value })} />
-              <Button type="button" size="icon" variant="ghost" onClick={() => removePrice(i)} className="col-span-1 text-destructive"><Trash2 className="h-4 w-4" /></Button>
-            </div>
-          ))}
+          {row.prices.map((p, i) => {
+            const { amount, unit } = parseQty(p.qty);
+            return (
+              <div key={i} className="grid grid-cols-12 gap-2 items-center">
+                {/* Amount number */}
+                <Input
+                  className="col-span-2"
+                  type="number"
+                  min={0}
+                  placeholder="જથ્થો"
+                  value={amount}
+                  onChange={(e) => updatePrice(i, { qty: composeQty(e.target.value, unit) })}
+                />
+                {/* Unit dropdown */}
+                <select
+                  className="col-span-2 h-10 rounded-md border border-input bg-background px-2 text-sm font-guj-sans"
+                  value={unit}
+                  onChange={(e) => updatePrice(i, { qty: composeQty(amount, e.target.value) })}
+                >
+                  {UNITS.map((u) => (
+                    <option key={u} value={u}>{u}</option>
+                  ))}
+                </select>
+                {/* Price */}
+                <Input
+                  className="col-span-3"
+                  type="number"
+                  placeholder="ભાવ ₹"
+                  value={p.price}
+                  onChange={(e) => updatePrice(i, { price: Number(e.target.value) })}
+                />
+                {/* Note */}
+                <Input
+                  className="col-span-4"
+                  placeholder="નોંધ (optional)"
+                  value={p.note ?? ""}
+                  onChange={(e) => updatePrice(i, { note: e.target.value })}
+                />
+                {/* Delete */}
+                <Button type="button" size="icon" variant="ghost" onClick={() => removePrice(i)} className="col-span-1 text-destructive">
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </div>
+            );
+          })}
         </div>
       </div>
 
