@@ -24,7 +24,7 @@ export const Footer = () => (
           <h4 className="font-guj font-semibold text-gold mb-5">સંપર્ક</h4>
           <ul className="space-y-4 font-guj-sans text-sm text-ivory/75">
             <li className="flex items-start gap-3"><MapPin className="h-4 w-4 text-gold mt-0.5" /><span>એ.પી.એમ.સી. યાર્ડ, અમદાવાદ – 380015</span></li>
-            <li className="flex items-center gap-3"><Phone className="h-4 w-4 text-gold" /><a href={`tel:${PHONE}`}>+91 98765 43210</a></li>
+            <li className="flex items-center gap-3"><Phone className="h-4 w-4 text-gold" /><a href={`tel:${PHONE}`}>+91 84015 24493</a></li>
             <li className="flex items-center gap-3"><Mail className="h-4 w-4 text-gold" /><a href="mailto:info@sitaramorganic.com" className="hover:text-gold transition-colors">info@sitaramorganic.com</a></li>
           </ul>
         </div>

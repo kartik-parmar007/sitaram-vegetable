@@ -108,5 +108,5 @@ export const products: Product[] = [
   },
 ];
 
-export const PHONE = "+919876543210";
-export const WHATSAPP = "919876543210";
+export const PHONE = "+918401524493";
+export const WHATSAPP = "918401524493";
