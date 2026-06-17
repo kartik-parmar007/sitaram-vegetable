@@ -202,11 +202,15 @@ const ProductEditor = ({ row, onChange, onSave, onDelete, onMove, isFirst, isLas
                 {/* Amount number */}
                 <Input
                   className="col-span-2"
-                  type="number"
-                  min={0}
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
                   placeholder="જથ્થો"
                   value={amount}
-                  onChange={(e) => updatePrice(i, { qty: composeQty(e.target.value, unit) })}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/[^0-9]/g, "");
+                    updatePrice(i, { qty: val === "" ? "" : composeQty(val, unit) });
+                  }}
                 />
                 {/* Unit dropdown */}
                 <select
