@@ -208,7 +208,7 @@ const ProductEditor = ({ row, onChange, onSave, onDelete, onMove, isFirst, isLas
                   placeholder="જથ્થો"
                   value={amount}
                   onChange={(e) => {
-                    const val = e.target.value.replace(/[^0-9]/g, "");
+                    const val = e.target.value.replace(/[^0-9]/g, "").replace(/^0+/, "");
                     updatePrice(i, { qty: val === "" ? "" : composeQty(val, unit) });
                   }}
                 />
