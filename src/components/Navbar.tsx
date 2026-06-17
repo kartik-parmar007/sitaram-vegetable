@@ -6,7 +6,6 @@ const links = [
   { href: "#harvest", label: "શાકભાજી" },
   { href: "#rates", label: "ભાવ" },
   { href: "#why", label: "અમારા વિશે" },
-  { href: "#testimonials", label: "ગ્રાહકો" },
   { href: "#contact", label: "સંપર્ક" },
 ];
 
@@ -27,8 +26,8 @@ export const Navbar = () => {
             <Leaf className="h-5 w-5 text-charcoal" strokeWidth={2} />
           </div>
           <div className="leading-none">
-            <div className="font-display text-2xl tracking-wide">તાજાશાક</div>
-            <div className="text-[9px] uppercase tracking-[0.25em] text-gold-soft/80 mt-0.5">Premium Vegetables</div>
+            <div className="font-display text-2xl tracking-wide">Sitaram Organic</div>
+            <div className="text-[9px] uppercase tracking-[0.25em] text-gold-soft/80 mt-0.5">sitaramorganic.com</div>
           </div>
         </a>
 

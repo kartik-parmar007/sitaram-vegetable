@@ -9,10 +9,13 @@ export const Footer = () => (
         <div>
           <div className="flex items-center gap-2.5 mb-5">
             <div className="w-10 h-10 rounded-full bg-gradient-gold flex items-center justify-center"><Leaf className="h-5 w-5 text-charcoal" /></div>
-            <span className="font-display text-3xl">તાજાશાક</span>
+            <div className="leading-none">
+              <div className="font-display text-2xl">Sitaram Organic</div>
+              <div className="text-[10px] uppercase tracking-widest text-gold-soft/70 mt-0.5">sitaramorganic.com</div>
+            </div>
           </div>
           <p className="font-guj-sans text-ivory/60 leading-relaxed text-sm">
-            સીધા ખેડૂતો પાસેથી તાજા શાકભાજી — હોલસેલ અને રિટેલ ભાવે.
+            સીધા ખેડૂતો પાસેથી તાજા ઓર્ગેનિક શાકભાજી — હોલસેલ અને રિટેલ ભાવે.
           </p>
         </div>
 
@@ -21,7 +24,7 @@ export const Footer = () => (
           <ul className="space-y-4 font-guj-sans text-sm text-ivory/75">
             <li className="flex items-start gap-3"><MapPin className="h-4 w-4 text-gold mt-0.5" /><span>એ.પી.એમ.સી. યાર્ડ, અમદાવાદ – 380015</span></li>
             <li className="flex items-center gap-3"><Phone className="h-4 w-4 text-gold" /><a href={`tel:${PHONE}`}>+91 98765 43210</a></li>
-            <li className="flex items-center gap-3"><Mail className="h-4 w-4 text-gold" /><span>info@tajashaak.example</span></li>
+            <li className="flex items-center gap-3"><Mail className="h-4 w-4 text-gold" /><a href="mailto:info@sitaramorganic.com" className="hover:text-gold transition-colors">info@sitaramorganic.com</a></li>
           </ul>
         </div>
 
@@ -41,7 +44,7 @@ export const Footer = () => (
       <div className="hairline mb-8" />
 
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-ivory/50">
-        <p className="font-guj-sans">© {new Date().getFullYear()} તાજાશાક. All rights reserved.</p>
+        <p className="font-guj-sans">© {new Date().getFullYear()} Sitaram Organic. All rights reserved. | sitaramorganic.com</p>
         <p className="flex items-center gap-1.5">
           Made by{" "}
           <a href="https://eaglebyte.in" target="_blank" rel="noopener noreferrer" className="text-gold hover:text-gold-soft transition-colors font-medium tracking-wide">
