@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Leaf, Phone, MessageCircle, X, Menu } from "lucide-react";
+import { Phone, MessageCircle, X, Menu } from "lucide-react";
 import { PHONE, WHATSAPP } from "@/data/products";
+import logoImg from "/logo.png";
 
 const links = [
   { href: "#harvest", label: "શાકભાજી" },
@@ -38,9 +39,7 @@ export const Navbar = () => {
         <nav className="container flex items-center justify-between gap-4">
           {/* Logo */}
           <a href="#top" className="flex items-center gap-2.5 text-ivory" onClick={closeMenu}>
-            <div className="w-10 h-10 rounded-full bg-gradient-gold flex items-center justify-center shadow-gold">
-              <Leaf className="h-5 w-5 text-charcoal" strokeWidth={2} />
-            </div>
+            <img src={logoImg} alt="Sitaram Organic Logo" className="w-12 h-12 rounded-full object-cover shadow-gold" />
             <div className="leading-none">
               <div className="font-display text-2xl tracking-wide">Sitaram Organic</div>
               <div className="text-[9px] uppercase tracking-[0.25em] text-gold-soft/80 mt-0.5">
@@ -112,9 +111,7 @@ export const Navbar = () => {
         {/* Drawer header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-ivory/10">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-gradient-gold flex items-center justify-center">
-              <Leaf className="h-4 w-4 text-charcoal" strokeWidth={2} />
-            </div>
+            <img src={logoImg} alt="Sitaram Organic" className="w-9 h-9 rounded-full object-cover" />
             <span className="font-display text-xl text-ivory">Sitaram Organic</span>
           </div>
           <button

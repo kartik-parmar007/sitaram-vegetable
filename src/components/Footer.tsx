@@ -1,5 +1,6 @@
-import { Leaf, Mail, Phone, MapPin, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
 import { PHONE, WHATSAPP } from "@/data/products";
+import logoImg from "/logo.png";
 
 export const Footer = () => (
   <footer id="contact" className="relative bg-charcoal text-ivory pt-24 pb-10 overflow-hidden">
@@ -8,7 +9,7 @@ export const Footer = () => (
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
         <div>
           <div className="flex items-center gap-2.5 mb-5">
-            <div className="w-10 h-10 rounded-full bg-gradient-gold flex items-center justify-center"><Leaf className="h-5 w-5 text-charcoal" /></div>
+            <img src={logoImg} alt="Sitaram Organic" className="w-12 h-12 rounded-full object-cover shadow-gold" />
             <div className="leading-none">
               <div className="font-display text-2xl">Sitaram Organic</div>
               <div className="text-[10px] uppercase tracking-widest text-gold-soft/70 mt-0.5">sitaramorganic.com</div>
