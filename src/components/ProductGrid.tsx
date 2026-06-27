@@ -1,19 +1,13 @@
-import { useState } from "react";
-import { type Product } from "@/data/products";
 import { ProductCard } from "./ProductCard";
-import { ProductDialog } from "./ProductDialog";
 import { useProducts } from "@/hooks/useProducts";
 
 export const ProductGrid = () => {
-  const [active, setActive] = useState<Product | null>(null);
   const { products } = useProducts();
 
-  // Showcase strip (auto-slide marquee)
   const showcase = [...products, ...products];
 
   return (
     <section id="harvest" className="relative py-24 bg-gradient-ivory overflow-hidden">
-      {/* Auto-sliding showcase strip */}
       <div className="mb-20 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
         <div className="flex gap-6 animate-marquee w-max pause-on-hover">
           {showcase.map((p, i) => (
@@ -36,17 +30,15 @@ export const ProductGrid = () => {
           <h2 className="mt-6 font-guj font-bold text-5xl sm:text-6xl text-foreground leading-[1.1]">
             તાજા <span className="italic gold-text">શાકભાજી</span>
           </h2>
-          <p className="mt-4 font-guj-sans text-muted-foreground">ખેતરથી સીધા તમારા ઘરે</p>
+          <p className="mt-4 font-guj-sans text-muted-foreground">ખેતરથી સીધા તમારા ઘરે — કાર્ટમાં નાખો અને WhatsApp પર ઓર્ડર કરો</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
           {products.map((p, i) => (
-            <ProductCard key={p.id} product={p} onOpen={setActive} index={i} />
+            <ProductCard key={p.id} product={p} index={i} />
           ))}
         </div>
       </div>
-
-      <ProductDialog product={active} onClose={() => setActive(null)} />
     </section>
   );
 };

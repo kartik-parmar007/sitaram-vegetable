@@ -1,21 +1,30 @@
 import { useEffect, useState } from "react";
 import type { Product } from "@/data/products";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Minus, Plus, MapPin, Leaf, Clock, Award, Phone, MessageCircle } from "lucide-react";
-import { PHONE, WHATSAPP } from "@/data/products";
+import { Minus, Plus, MapPin, Leaf, Clock, Award, ShoppingCart, Check } from "lucide-react";
+import { useCart } from "@/context/CartContext";
+import { toast } from "sonner";
 
 export const ProductDialog = ({ product, onClose }: { product: Product | null; onClose: () => void }) => {
   const [selectedTier, setSelectedTier] = useState(0);
   const [qty, setQty] = useState(1);
+  const [added, setAdded] = useState(false);
+  const { addItem } = useCart();
 
   useEffect(() => {
-    if (product) { setSelectedTier(0); setQty(1); }
+    if (product) { setSelectedTier(0); setQty(1); setAdded(false); }
   }, [product]);
 
   if (!product) return null;
   const tier = product.prices[selectedTier];
   const total = tier.price * qty;
-  const waText = encodeURIComponent(`નમસ્તે, મારે ${product.name} ${tier.qty} × ${qty} = ₹${total} નો ઓર્ડર કરવો છે`);
+
+  const handleAdd = () => {
+    addItem(product, selectedTier, qty);
+    setAdded(true);
+    toast.success(`${product.name} કાર્ટમાં ઉમેરાયું!`, { duration: 2000 });
+    setTimeout(() => setAdded(false), 1500);
+  };
 
   return (
     <Dialog open={!!product} onOpenChange={(o) => !o && onClose()}>
@@ -57,7 +66,7 @@ export const ProductDialog = ({ product, onClose }: { product: Product | null; o
               {product.prices.map((p, i) => (
                 <button
                   key={p.qty}
-                  onClick={() => setSelectedTier(i)}
+                  onClick={() => { setSelectedTier(i); setQty(1); }}
                   className={`group relative flex items-center justify-between px-5 py-4 rounded-xl border-2 transition-all duration-300 hover:-translate-y-0.5 ${
                     selectedTier === i
                       ? "border-gold bg-gradient-forest text-primary-foreground shadow-luxe"
@@ -90,14 +99,20 @@ export const ProductDialog = ({ product, onClose }: { product: Product | null; o
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <a href={`tel:${PHONE}`} className="inline-flex items-center justify-center gap-2 bg-gold text-charcoal py-4 rounded-full text-sm font-guj-sans font-semibold hover:shadow-gold transition-all hover:-translate-y-0.5">
-                <Phone className="h-4 w-4" /> કૉલ કરો
-              </a>
-              <a href={`https://wa.me/${WHATSAPP}?text=${waText}`} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white py-4 rounded-full text-sm font-guj-sans font-semibold hover:opacity-90 transition-opacity">
-                <MessageCircle className="h-4 w-4" /> વોટ્સએપ
-              </a>
-            </div>
+            <button
+              onClick={handleAdd}
+              className={`w-full flex items-center justify-center gap-2 py-4 rounded-full font-guj-sans font-semibold text-base transition-all duration-300 hover:-translate-y-0.5 ${
+                added
+                  ? "bg-emerald-600 text-white shadow-lg"
+                  : "bg-gold text-charcoal hover:shadow-gold animate-pulse-glow"
+              }`}
+            >
+              {added ? (
+                <><Check className="h-4 w-4" /> કાર્ટમાં ઉમેરાયું!</>
+              ) : (
+                <><ShoppingCart className="h-4 w-4" /> કાર્ટમાં નાખો</>
+              )}
+            </button>
           </div>
         </div>
       </DialogContent>

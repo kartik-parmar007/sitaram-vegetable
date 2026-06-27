@@ -8,6 +8,7 @@ import { Counters } from "@/components/Counters";
 import { Testimonials } from "@/components/Testimonials";
 import { Footer } from "@/components/Footer";
 import { FloatingCTA } from "@/components/FloatingCTA";
+import { CartDrawer } from "@/components/CartDrawer";
 
 const Index = () => (
   <main className="min-h-screen bg-background overflow-x-hidden">
@@ -21,6 +22,7 @@ const Index = () => (
     <Testimonials />
     <Footer />
     <FloatingCTA />
+    <CartDrawer />
   </main>
 );
 

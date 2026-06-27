@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Phone, MessageCircle, X, Menu } from "lucide-react";
+import { Phone, MessageCircle, X, Menu, ShoppingCart } from "lucide-react";
 import { PHONE, WHATSAPP } from "@/data/products";
 import logoImg from "/logo.png";
+import { useCart } from "@/context/CartContext";
 
 const links = [
   { href: "#harvest", label: "શાકભાજી" },
@@ -13,6 +14,7 @@ const links = [
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { count, setCartOpen } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -64,6 +66,18 @@ export const Navbar = () => {
 
           {/* Right buttons */}
           <div className="flex items-center gap-2">
+            <button
+              onClick={() => setCartOpen(true)}
+              aria-label="કાર્ટ"
+              className="relative inline-flex items-center gap-2 glass text-ivory px-4 py-2.5 rounded-full text-sm hover:bg-ivory/15 transition-colors"
+            >
+              <ShoppingCart className="h-4 w-4 text-gold" />
+              {count > 0 && (
+                <span className="absolute -top-1 -right-1 bg-gold text-charcoal text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                  {count}
+                </span>
+              )}
+            </button>
             <a
               href={`tel:${PHONE}`}
               aria-label="કૉલ કરો"
