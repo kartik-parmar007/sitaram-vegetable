@@ -8,12 +8,17 @@
     <meta name="author" content="Sitaram Organic" />
     <meta name="keywords" content="Sitaram Organic, organic vegetables, sitaramorganic.com, તાજા શાકભાજી, ઓર્ગેનિક, wholesale vegetables Gujarat" />
 
-    <link rel="canonical" href="https://sitaramorganic.com/" />
+    <link rel="canonical" href="https://www.sitaramorganic.com/" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/icon-48.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon-96.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/icon-192.png" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,8 +28,8 @@
     <meta property="og:title" content="Sitaram Organic — તાજા ઓર્ગેનિક શાકભાજી" />
     <meta property="og:description" content="સીધા ખેડૂત પાસેથી તાજા ઓર્ગેનિક શાકભાજી. હોલસેલ અને રિટેલ ભાવ." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://sitaramorganic.com/" />
-    <meta property="og:image" content="https://sitaramorganic.com/logo.png" />
+    <meta property="og:url" content="https://www.sitaramorganic.com/" />
+    <meta property="og:image" content="https://www.sitaramorganic.com/icon-512.png" />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
     <meta property="og:site_name" content="Sitaram Organic" />
@@ -33,7 +38,35 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Sitaram Organic — Fresh Organic Vegetables" />
     <meta name="twitter:description" content="Direct from farm. Wholesale & Retail. sitaramorganic.com" />
-    <meta name="twitter:image" content="https://sitaramorganic.com/logo.png" />
+    <meta name="twitter:image" content="https://www.sitaramorganic.com/icon-512.png" />
+
+    <!-- Structured data: Organization + WebSite logo for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.sitaramorganic.com/#organization",
+          "name": "Sitaram Organic",
+          "url": "https://www.sitaramorganic.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.sitaramorganic.com/icon-512.png",
+            "width": 512,
+            "height": 512
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.sitaramorganic.com/#website",
+          "url": "https://www.sitaramorganic.com/",
+          "name": "Sitaram Organic",
+          "publisher": { "@id": "https://www.sitaramorganic.com/#organization" }
+        }
+      ]
+    }
+    </script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9QCBXVH45"></script>
